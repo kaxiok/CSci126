@@ -1,0 +1,46 @@
+CREATE TABLE game (
+    rank     INTEGER,
+    title    STRING,
+    ratings  INTEGER,
+    installs DOUBLE,
+    ar       DOUBLE,
+    ag30     DOUBLE,
+    ag60     DOUBLE,
+    price    DOUBLE,
+    category STRING,
+    [5s]     INTEGER,
+    [4s]     INTEGER,
+    [3s]     INTEGER,
+    [2s]     INTEGER,
+    [1s]     INTEGER,
+    paid     BOOLEAN,
+    column16
+);
+
+CREATE TABLE users (
+    id     INT     UNIQUE
+                   PRIMARY KEY,
+    active BOOLEAN
+);
+
+CREATE TABLE profile (
+    id       INT    UNIQUE
+                    REFERENCES users (id),
+    name     STRING,
+    currency INT,
+    age      INT    PRIMARY KEY,
+    gender   STRING
+);
+
+CREATE TABLE restriction (
+    age   INT     REFERENCES profile (age),
+    adult BOOLEAN,
+    teen  BOOLEAN
+);
+
+CREATE TABLE played (
+    id            INT REFERENCES users (id),
+    gameinstalled INT
+);
+
+
